@@ -1,14 +1,15 @@
-// const { createElement } = require("react");
-
+// Selecionando os elementos do formulário
 const form = document.querySelector("form");
 const amount = document.getElementById("amount");
 const expense = document.getElementById("expense");
 const category = document.getElementById("category");
 
+// Selecinando os elementos da lista
 const expenseList = document.querySelector("ul");
 const expenseTotal = document.querySelector("aside header h2");
 const expensesQuantity = document.querySelector("aside header p span");
 
+// Capturando o evento para formatar o valor
 amount.oninput = () => {
   let value = amount.value.replace(/\D+/g, "");
 
@@ -20,6 +21,7 @@ amount.oninput = () => {
 };
 
 function formatCurrencyBRL(value) {
+  // Formata o valor no padrão BRL (Real Brasileiro)
   value = value.toLocaleString("pt-BR", {
     style: "currency",
     currency: "BRL",
@@ -43,12 +45,14 @@ form.onsubmit = (event) => {
   expenseAdd(newExpense);
 };
 
+// Adiciona um novo item a lista
 function expenseAdd(newExpense) {
   try {
+    // Cria o elemento para adicionar o item (li) na lista (ul)
     const expenseItem = document.createElement("li");
     expenseItem.classList.add("expense");
 
-    //
+    // Criar o ícone da categoria
     const expenseIcon = document.createElement("img");
     expenseIcon.setAttribute("src", `img/${newExpense.category_id}.svg`);
     expenseIcon.setAttribute("alt", newExpense.category_name);
@@ -57,16 +61,18 @@ function expenseAdd(newExpense) {
     const expenseInfo = document.createElement("div");
     expenseInfo.classList.add("expense-info");
 
+    // Cria o nome da despesa
     const expenseName = document.createElement("strong");
     expenseName.textContent = newExpense.expense;
 
+    // Cria a categoria da despesa
     const expenseCategory = document.createElement("span");
     expenseCategory.textContent = newExpense.category_name;
 
+    // Adiciona o nome e a categoria na div das informações da despesa
     expenseInfo.append(expenseName, expenseCategory);
 
     // Criando o valor da despesas
-
     const expenseAmount = document.createElement("span");
     expenseAmount.classList.add("expense-amount");
 
@@ -99,10 +105,13 @@ function expenseAdd(newExpense) {
   }
 }
 
+// Atualiza os totais
 function updateTotals() {
   try {
+    // Recupera todos os itens (li) da lista (ul)
     const itens = expenseList.children;
 
+    // Atualiza a quantidade de itens da lista
     expensesQuantity.textContent = `${itens.length} ${
       itens.length > 1 ? "despesas" : "despesa"
     }`;
@@ -149,8 +158,10 @@ function updateTotals() {
   }
 }
 
+// Evento que captura o clique nos itens da lista
 expenseList.addEventListener("click", (e) => {
   if (e.target.classList.contains("remove-icon")) {
+    // Obtém a li pai do elemento clicado
     const item = e.target.closest(".expense");
     item.remove();
   }
@@ -158,6 +169,7 @@ expenseList.addEventListener("click", (e) => {
   updateTotals();
 });
 
+// Limpa os inputs do formulário
 function formClear() {
   amount.value = " ";
   category.value = " ";
