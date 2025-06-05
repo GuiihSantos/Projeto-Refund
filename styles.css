@@ -129,7 +129,7 @@ select:focus {
   max-width: 154px;
 }
 
-form button {
+form button, .button-pdf {
   height: 3rem;
   border-radius: 0.5rem;
   border: none;
@@ -150,6 +150,7 @@ button:hover {
 form button:last-child {
   margin-top: 2rem;
 }
+
 
 aside {
   background-color: #f9fbfa;
@@ -201,8 +202,8 @@ aside header small {
 }
 
 aside ul {
-  list-style: none;
-  display: flex;
+  /* list-style: none; */
+  /* display: flex; */
   flex-direction: column;
   gap: 1rem;
 
@@ -315,3 +316,5 @@ aside ul {
     align-items: center;
   }
 }
+
+

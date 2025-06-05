@@ -177,3 +177,61 @@ function formClear() {
 
   expense.focus();
 }
+
+// Gerar pdf
+function geraPdf() {
+  // Oculta o botão de gerar PDF
+  const botaoPdf = document.querySelector(".no-print");
+  botaoPdf.style.display = "none";
+
+  // O Conteúdo que vai esta no pdf
+  const conteudoPDF = document.querySelector(".conteudo-pdf");
+
+  // Salva o estilo original do fundo
+  const originalBackground = conteudoPDF.style.background;
+
+  // Remove os ícones de remoção
+  const removeIcons = conteudoPDF.querySelectorAll(".remove-icon");
+  // Oculta o ícone
+  removeIcons.forEach((icon) => {
+    icon.style.display = "none";
+  });
+
+  // Define o fundo como branco temporariamente
+  conteudoPDF.style.background = "white";
+
+  // Configura o arquivo final
+  const options = {
+    margin: [10, 10, 10, 10],
+    filename: "despesas.pdf",
+    html2canvas: { scale: 2 },
+    jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+  };
+
+  // Gerar e baixar o PDF
+  html2pdf()
+    .set(options)
+    .from(conteudoPDF)
+    .save()
+    .then(() => {
+      // Após a geração do PDF, mostra o botão novamente
+      botaoPdf.style.display = "block";
+
+      // Restaura o fundo original
+      conteudoPDF.style.background = originalBackground;
+
+      // Restaura os ícones de remoção
+      // Mostra o ícone novamente
+      removeIcons.forEach((icon) => {
+        icon.style.display = "block";
+      });
+    })
+    .catch((erro) => {
+      alert("Não foi possivel gerar o pdf");
+      console.error("Erro ao gerar PDF:", erro);
+      botaoPdf.style.display = "block";
+      removeIcons.forEach((icon) => {
+        icon.style.display = "block";
+      });
+    });
+}

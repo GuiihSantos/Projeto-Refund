@@ -7,6 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
     <link
       href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap"
       rel="stylesheet"
@@ -62,7 +64,7 @@
           <button type="submit">Adicionar despesa</button>
         </form>
 
-        <aside>
+        <aside class="conteudo-pdf">
           <header>
             <p>
               Minhas solicitações <i>&bullet;</i>
@@ -87,6 +89,7 @@
               <img src="./img/remove.svg" alt="remover" class="remove-icon" />
             </li> -->
           </ul>
+          <button class="button-pdf no-print"  onclick="geraPdf()">Gerar PDF</button>
         </aside>
       </section>
     </main>
