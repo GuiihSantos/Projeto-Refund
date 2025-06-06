@@ -1,6 +1,6 @@
 # REFUND
 
-Um gerenciador de despesas pessoais que facilita o controle financeiro, permitindo registro, categorização e geração de relatórios em PDF.
+Um gerenciador de despesas que simplifica o controle de reembolsos, permitindo o registro, categorização e a geração de relatórios em PDF de forma eficiente e prática.
 
 Este projeto foi desenvolvido como parte do curso da **Rocketseat**. Além das funcionalidades presentes na aplicação original, eu adicionei a opção de gerar relatórios em PDF, tornando a ferramenta ainda mais prática e útil para os usuários.
 
